@@ -1,12 +1,22 @@
 module Optimization.Fibonacci
 
 open System
+open System.Collections.Generic
+
+let fibCache = Dictionary<int, float>()
 
 let rec fib n = 
-    match n with
-    | 0 -> 0.
-    | 1 -> 1.
-    | n -> (fib (n - 1)) + (fib (n - 2))
+    if fibCache.ContainsKey(n)
+    then 
+        fibCache.[n]
+    else 
+        let c = 
+            match n with
+            | 0 -> 0.
+            | 1 -> 1.
+            | n -> (fib (n - 1)) + (fib (n - 2))
+        fibCache.[n] <- c
+        c
 
 let rec argmin func (a, b) (n: int) =
     let rec rArgmin func (a, b) (x1, x2) n =
