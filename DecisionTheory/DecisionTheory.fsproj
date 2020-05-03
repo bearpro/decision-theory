@@ -13,6 +13,7 @@
     <Compile Include="Optimization.Dichotomy.fs" />
     <Compile Include="Optimization.Fibonacci.fs" />
     <Compile Include="Optimization.Newton.fs" />
+    <Compile Include="Optimization.Chord.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
