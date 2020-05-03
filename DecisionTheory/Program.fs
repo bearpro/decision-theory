@@ -24,5 +24,6 @@ let main argv =
     printfn "%-30s %f" BitwiseSearch.methodName (BitwiseSearch.argmin range 2.0 0.25 0.01 (call f))
     printfn "%-30s %f" Newton.methodName        (Newton.argmin -5.0 0.01 (call fpp) (call fp))
     printfn "%-30s %f" Chord.methodName         (Chord.argmin (-5.0, 5.0) 0.01 (call fp))
+    printfn "%-30s %f" Midpoint.methodName      (Midpoint.argmin (-5.0, 5.0) 0.01 (call fp))
 
     0

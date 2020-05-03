@@ -14,6 +14,7 @@
     <Compile Include="Optimization.Fibonacci.fs" />
     <Compile Include="Optimization.Newton.fs" />
     <Compile Include="Optimization.Chord.fs" />
+    <Compile Include="Optimization.Midpoint.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
