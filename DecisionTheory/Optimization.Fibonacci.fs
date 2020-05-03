@@ -22,7 +22,7 @@ let rec fib n =
 
 /// Возвращает оптимальное количество итераций, которые нужно совершить по методу фибоначчи,
 /// чтобы достичь заданной точности поиска минимума на заданном отрезке.
-let optimalIterations (a, b) (accuracy: float) : int =
+let optn (a, b) (accuracy: float) : int =
     int (abs (b - a) / accuracy)
 
 let rec argmin (a, b) (n: int) func =
