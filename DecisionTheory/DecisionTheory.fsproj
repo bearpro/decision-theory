@@ -6,11 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Functions.fs" />
     <Compile Include="Optimization.GoldenSection.fs" />
     <Compile Include="Optimization.Enumeration.fs" />
     <Compile Include="Optimization.BitwiseSearch.fs" />
     <Compile Include="Optimization.Dichotomy.fs" />
     <Compile Include="Optimization.Fibonacci.fs" />
+    <Compile Include="Optimization.Newton.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

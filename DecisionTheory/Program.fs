@@ -2,6 +2,7 @@
 
 open System
 open Optimization
+open Functions
 
 let range = (-5., 5.)
 
@@ -21,11 +22,20 @@ let optimizationAlgorythms =
         Algorithm = Enumeration.argmin range 0.01 } 
       { Name      = BitwiseSearch.methodName
         Algorithm = BitwiseSearch.argmin range 2.0 0.25 0.01 }]
+let x = "x"
+let funcExamples = [
+    Add(Mul(Val(2.0), Mul(Var(x), Var(x))), Mul(Val(6.0), Var(x)))
+    Add(Mul(Val 5.0, Mul(Var x, Var x)), Var x)
+]
 
 [<EntryPoint>]
 let main argv =
-    let f (x) = 2. * (x ** 2.) + 6. * x
-    //let f (x) = 5. * (x ** 2.) + x
+    let f = funcExamples.[0]
+    let fp = diff f x
+    let fpp = diff fp x
+    let z = Newton.argmin -5.0 0.01 (call fpp) (call fp)
+    printfn "%A" z
     for { Name = name; Algorithm = argmin } in optimizationAlgorythms do
-        printfn "%s: %f" name (argmin f)
+        printfn "%s: %f" name (argmin (call f))
+    printfn "%s: %f" Newton.methodName (Newton.argmin -5.0 0.01 (call fpp) (call fp))
     0
