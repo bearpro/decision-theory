@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Include="Optimization.GoldenSection.fs" />
+    <Compile Include="Optimization.Dichotomy.fs" />
     <Compile Include="Optimization.Fibonacci.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
