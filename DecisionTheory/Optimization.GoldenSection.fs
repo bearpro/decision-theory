@@ -2,11 +2,13 @@ module Optimization.GoldenSection
 
 open System
 
+let methodName = "Метод золтого сечения"
+
 /// Константа, определяющая отношение золтого сечения.
 let private goldenSection = 0.5 * (1.0 + sqrt 5.0)
 let private Ф = goldenSection
 
-let rec argmin func accuracy (a, b) = 
+let rec argmin accuracy (a, b) func = 
     if b - a < accuracy then 
         0.5 * (a + b)
     else 
@@ -16,5 +18,5 @@ let rec argmin func accuracy (a, b) =
         let y1 = func x1
         let y2 = func x2
         match y1 >= y2 with
-        | true  -> argmin func accuracy (x1, b)
-        | false -> argmin func accuracy (a, x2)
+        | true  -> argmin accuracy (x1, b) func
+        | false -> argmin accuracy (a, x2) func

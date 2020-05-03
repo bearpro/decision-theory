@@ -3,6 +3,8 @@ module Optimization.Fibonacci
 open System
 open System.Collections.Generic
 
+let methodName = "Метод Фибоначчи"
+
 let fibCache = Dictionary<int, float>()
 
 let rec fib n = 
@@ -23,7 +25,7 @@ let rec fib n =
 let optimalIterations (a, b) (accuracy: float) : int =
     int (abs (b - a) / accuracy)
 
-let rec argmin func (a, b) (n: int) =
+let rec argmin (a, b) (n: int) func =
     if n = 0
     then
         a
@@ -33,5 +35,5 @@ let rec argmin func (a, b) (n: int) =
         let y1 = func x1
         let y2 = func x2
         if y1 < y2
-        then argmin func (a, x2) (n - 1)
-        else argmin func (x1, b) (n - 1)
+        then argmin (a, x2) (n - 1) func
+        else argmin (x1, b) (n - 1) func

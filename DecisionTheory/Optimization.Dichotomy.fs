@@ -1,6 +1,8 @@
 module Optimization.Dichotomy
 
-let rec argmin func (a, b) d accuracy =
+let methodName = "Метод дихотомии"
+
+let rec argmin (a, b) d accuracy func =
     if (b - a) <= accuracy 
     then (b + a) / 2.
     else
@@ -9,5 +11,5 @@ let rec argmin func (a, b) d accuracy =
         let y1 = func x1
         let y2 = func x2
         match y1 <= y2 with
-        | true  -> argmin func (a, x2) d accuracy
-        | false -> argmin func (x1, b) d accuracy
+        | true  -> argmin (a, x2) d accuracy func
+        | false -> argmin (x1, b) d accuracy func

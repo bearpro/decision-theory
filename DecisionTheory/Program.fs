@@ -3,15 +3,24 @@
 open System
 open Optimization
 
+let range = (-5., 5.)
+
+type OptymizationAlgorithm =
+    { Name: string
+      Algorithm: (float -> float) -> float}
+
+let optimizationAlgorythms = 
+    [ { Name = GoldenSection.methodName
+        Algorithm = GoldenSection.argmin 0.001 range }
+      { Name = Fibonacci.methodName
+        Algorithm = Fibonacci.argmin range (Fibonacci.optimalIterations range 0.1) }
+      { Name = Dichotomy.methodName
+        Algorithm = Dichotomy.argmin range 0.001 0.01 } ]
+
 [<EntryPoint>]
 let main argv =
-    //let f (x) = 2. * (x ** 2.) + 6. * x
+    let f (x) = 2. * (x ** 2.) + 6. * x
     let f (x) = 5. * (x ** 2.) + x
-    let range = (-5., 5.)
-    let gsArg = GoldenSection.argmin f 0.001 range
-    let fibArg = Fibonacci.argmin f range (Fibonacci.optimalIterations range 0.1)
-    let dxArg = Dichotomy.argmin f range 0.001 0.01
-    printfn "Минимум по алгоритму золтого сечения:   %f" gsArg
-    printfn "Минимум по алгоритму Фибоначчи:         %f" fibArg
-    printfn "Минимум по алгоритму дихотомии:         %f" dxArg
+    for { Name = name; Algorithm = argmin } in optimizationAlgorythms do
+        printfn "%s: %f" name (argmin f)
     0
