@@ -18,17 +18,20 @@ let rec fib n =
         fibCache.[n] <- c
         c
 
-let rec argmin func (a, b) (n: int) =
-    let rec rArgmin func (a, b) (x1, x2) n =
-        if n = 0
-        then x1
-        else
-            let y1 = func x1
-            let y2 = func x2
-            if y1 > y2
-            then rArgmin func (x1, b) (x2, b - (x1 - a)) (n - 1)
-            else rArgmin func (a, x2) (a + (b - x2), x1) (n - 1)
+/// Возвращает оптимальное количество итераций, которые нужно совершить по методу фибоначчи,
+/// чтобы достичь заданной точности поиска минимума на заданном отрезке.
+let optimalIterations (a, b) (accuracy: float) : int =
+    int (abs (b - a) / accuracy)
 
-    let x1 = a + (fib (n + 0) / fib (n + 2)) * (b - a)
-    let x2 = a + (fib (n + 1) / fib (n + 2)) * (b - a)
-    rArgmin func (a, b) (x1, x2) n
+let rec argmin func (a, b) (n: int) =
+    if n = 0
+    then
+        a
+    else
+        let x1 = a + (fib (n + 0) / fib (n + 2)) * (b - a)
+        let x2 = a + (fib (n + 1) / fib (n + 2)) * (b - a)
+        let y1 = func x1
+        let y2 = func x2
+        if y1 < y2
+        then argmin func (a, x2) (n - 1)
+        else argmin func (x1, b) (n - 1)
