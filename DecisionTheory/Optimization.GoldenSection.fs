@@ -2,7 +2,7 @@ module Optimization.GoldenSection
 
 open System
 
-let methodName = "Метод золтого сечения"
+let methodName = "Метод золотого сечения"
 
 /// Константа, определяющая отношение золтого сечения.
 let private goldenSection = 0.5 * (1.0 + sqrt 5.0)

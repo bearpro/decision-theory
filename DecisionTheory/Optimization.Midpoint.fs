@@ -1,6 +1,6 @@
 module Optimization.Midpoint
 
-let methodName = "Метод середины отрезка"
+let methodName = "Метод средней точки"
 
 let rec argmin (a, b) accuracy primeFunc =
     let x = (a + b) / 2.0
